@@ -15,7 +15,8 @@ dynamodb.describeTable(
         if(err) {
             console.log(err);
         } else {
-            console.log(data)
+            // the third argument '2' is to prity print the output
+            console.log(JSON.stringify(data, null, 2));
         }
 })
 
