@@ -2,3 +2,7 @@
 
 ## Opperations
     - list tables
+    - describe tables
+    - create
+    - update
+    - delete
