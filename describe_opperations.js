@@ -1,53 +1,22 @@
-// What do I need??
-
-// SDK
 const AWS = require('aws-sdk');
-
-//region
 AWS.config.update({region: 'eu-west-2'});
-
-// dynamo object
 const docClient = new AWS.DynamoDB;
 
-
-
-// ToDo:
-// Use async
-
-// const params = {
-//         TableName: 'weatherstation_test',
-//       };
-
-// docClient.describeTable(params, function(err, data) {
-//   if (err) console.log(err, err.stack); // an error occurred
-//   else     console.log(JSON.stringify(data, null, 2));           // successful response
-// });
-
-async function blah() {
+async function describeTable() {
     const params = {
-    TableName: 'weatherstation_test',
-  };
-  let queryResult;
-        try {
-            queryResult = docClient.describeTable(params).promise();
-            
-        } catch (error) {
-            throw error;
-        }
-        return {
-            results: queryResult,
-        };
-};
+        TableName: 'weatherstation_test',
+    };
 
+    let response;
+    try {
+        response = await docClient.describeTable(params).promise()
+        
+    } catch (e) {
+        
+        throw e;
+    }
+    return response;
+}
 
-console.log(blah())
+describeTable().then(result => console.log(JSON.stringify(result, null, 2)));
 
-
-
-
-
-// async function blag() {
-//     return await queryPostcodeIndex();
-// }
-// const rs = blag();
-// console.log(rs);
