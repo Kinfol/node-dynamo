@@ -4,29 +4,54 @@ const docClient = new AWS.DynamoDB;
 
 async function describeTable() {
     const params = {
-        TableName: 'weatherstation_test',
-    };
+        TableName: "td_notes_sdk",
+        AttributeDefinitions: [
+            {
+                AttributeName: "user_id",
+                AttributeType: "S"
+            },
+            {
+                AttributeName: "timestamp",
+                AttributeType: "N"
+            }
+        ],
+        KeySchema: [
+            {
+                AttributeName: "user_id",
+                KeyType: "HASH"
+            },
+            {
+                AttributeName: "timestamp",
+                KeyType: "RANGE"
+            }
+        ],
+        ProvisionedThroughput: {
+            ReadCapacityUnits: 1,
+            WriteCapacityUnits: 1
+        }
+    }
 
     let response;
     try {
-        response = await docClient.describeTable(params).promise()
-        // .then(result => result);
-        // console.log(response); // Logs the response data
+        response = await docClient.createTable(params).promise();
+        
     } catch (e) {
-        console.error(e)
+        
         throw e;
     }
     return response;
 }
 
+// describeTable().then(result => console.log(result));
+
 // console.log(describeTable().then(result => result));
 
 
-// using another function to call the async function
+
 async function blas() {
     const a = await describeTable();
-    console.log('a');
-    console.log(a);
+    console.log('a')
+    console.log(JSON.stringify(a, null ,2));
 }
-
 blas();
+// console.log(blas().then(result => result));
