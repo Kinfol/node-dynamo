@@ -29,7 +29,7 @@ const params = {
     }
 }
 
-async function describeTable() {
+async function createTable() {
     let response;
     try {
         response = await docClient.createTable(params).promise();
@@ -42,7 +42,7 @@ async function describeTable() {
 }
 
 async function blas() {
-    const a = await describeTable();
+    const a = await createTable();
     console.log('a')
     console.log(JSON.stringify(a, null ,2));
 }
