@@ -10,13 +10,21 @@ async function describeTable() {
     let response;
     try {
         response = await docClient.describeTable(params).promise()
-        
+        // .then(result => result);
+        // console.log(response); // Logs the response data
     } catch (e) {
-        
+        console.error(e)
         throw e;
     }
     return response;
 }
 
-describeTable().then(result => console.log(JSON.stringify(result, null, 2)));
+// console.log(describeTable().then(result => result));
 
+
+
+async function blas() {
+    return a = await describeTable();
+}
+
+blas().then(result => console.log(result));
