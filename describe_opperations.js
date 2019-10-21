@@ -22,9 +22,11 @@ async function describeTable() {
 // console.log(describeTable().then(result => result));
 
 
-
+// using another function to call the async function
 async function blas() {
-    return a = await describeTable();
+    const a = await describeTable();
+    console.log('a');
+    console.log(a);
 }
 
-blas().then(result => console.log(result));
+blas();
